@@ -71,4 +71,7 @@ public class Company {
     public void setDescription(String description) {
         Description = description;
     }
+    public void addPoster(Job_Poster poster){
+        posters.add(poster);
+    }
 }

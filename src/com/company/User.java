@@ -12,14 +12,13 @@ public class User {
     static ArrayList<String> Password=new ArrayList<String>();
 
 
-    public User(String name, String username, String password, int age, String email) {
+    public User(String name, int age, String email) {
         this.name = name;
-        this.username = username;
-        this.password = password;
+        this.username = "";
+        this.password = "";
         this.age = age;
         this.email = email;
-        Username.add(username);
-        Password.add(password);
+
 
     }
 
@@ -66,17 +65,6 @@ public class User {
         this.email = email;
     }
 
-    public boolean validation(String username,String password){
-        int i = 0;
-        for(String un : Username){
-            if(un.equals(username)){
-                if(Password.get(i).equals(password)){
-                    return true;
-                }
-            }
-            i++;
-        }
-        return false;
-    }
+
 }
 
