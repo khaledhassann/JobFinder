@@ -10,17 +10,18 @@ public class Main {
 	// write your code here
         //tgf
 
-        Scanner scanner=new Scanner(System.in);
+        /*Scanner scanner=new Scanner(System.in);
         System.out.println("Enter Username:");
         String username=scanner.nextLine();
         System.out.println("Enter Password:");
         String password=scanner.nextLine();
 
         User Habiba=new User("Habiba","Habiba10","123",20,"habiba@gmail.com");
-
         scanner.close();
 
-        Habiba.validation(username,password);
+         */
+        Job_Seeker.options();
+        //Habiba.validation(username,password);
 
     }
 }

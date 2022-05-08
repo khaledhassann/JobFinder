@@ -75,10 +75,10 @@ public class User {
         }
     }
     }
-    public void options(){
+    public static int options(){
 
 //uiglhj
-
+    return 0;
     }
 
 }
