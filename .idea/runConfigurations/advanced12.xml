@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="advanced12" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="com.company.Main" />
+    <module name="advanced12" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
