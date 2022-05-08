@@ -75,5 +75,11 @@ public class User {
         }
     }
     }
+    public void options(){
+
+//uiglhj
+
+    }
+
 }
 
