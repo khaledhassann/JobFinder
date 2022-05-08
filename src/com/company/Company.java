@@ -12,14 +12,8 @@ public class Company {
     private String Description;
 
 
-    public Company(String name, Admin admin, ArrayList<Job_Poster> posters, ArrayList<Double> reviews, ArrayList<Job> jobs, Double review, String description) {
-        this.name = name;
-        Admin = admin;
-        this.posters = posters;
-        Reviews = reviews;
-        Jobs = jobs;
-        Review = review;
-        Description = description;
+    public Company() {
+
     }
 
     public String getName() {

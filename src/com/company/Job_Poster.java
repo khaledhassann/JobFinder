@@ -5,6 +5,8 @@ import java.util.ArrayList;
 public class Job_Poster {
     private Company company;
     ArrayList<Job> jobs;
+    static ArrayList<String> Username=new ArrayList<String>();
+    static ArrayList<String> Password=new ArrayList<String>();
 
     public Job_Poster(Company company) {
         this.company = company;

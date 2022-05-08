@@ -8,8 +8,8 @@ public class User {
     private String password;
     private int age;
     private String email;
-    private ArrayList<String> Username=new ArrayList<String>();
-    private ArrayList<String> Password=new ArrayList<String>();
+    static ArrayList<String> Username=new ArrayList<String>();
+    static ArrayList<String> Password=new ArrayList<String>();
 
 
     public User(String name, String username, String password, int age, String email) {
@@ -66,14 +66,17 @@ public class User {
         this.email = email;
     }
 
-    public void validation(String username,String password){
-    for( String i:Username ){
-        if(i.equals(username)){
-            System.out.println("Logged in!");
-        }else{
-            System.out.println("Invalid");
+    public boolean validation(String username,String password){
+        int i = 0;
+        for(String un : Username){
+            if(un.equals(username)){
+                if(Password.get(i).equals(password)){
+                    return true;
+                }
+            }
+            i++;
         }
-    }
+        return false;
     }
 }
 

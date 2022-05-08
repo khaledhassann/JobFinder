@@ -5,6 +5,8 @@ import java.util.ArrayList;
     public class Job_Seeker extends User {
         private Resume resume;
         ArrayList<Application> applications;
+        static ArrayList<String> Username=new ArrayList<String>();
+        static ArrayList<String> Password=new ArrayList<String>();
 
 
         public Job_Seeker(String name) {
