@@ -8,18 +8,27 @@ public class Admin extends User {
     private Company company;
 
     static ArrayList<String> Username = new ArrayList<String>();
+    static ArrayList<Admin> Admins = new ArrayList<>();
     static ArrayList<String> Password = new ArrayList<String>();
 
 
     public Admin(String name, String username, String password, int age, String email, Company company) {
-        super(name, age, email);
+        super(name,username,password,age, email);
         this.company = company;
         Username.add(username);
         Password.add(password);
+        Admins.add(this);
     }
 
-
-      public void options(){
+    static Admin findAdmin(String username){
+        for(Admin admin:Admins){
+            if(admin.getUsername().equals(username)){
+                return admin;
+            }
+        }
+        return null;
+    }
+    public void options(){
 
         System.out.println(
                 "**************** Admin Options menu ****************\n" +

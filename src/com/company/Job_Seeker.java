@@ -7,29 +7,40 @@ import java.util.Scanner;
         private Resume resume;
         private ArrayList<String> appliedJobs;
         static Scanner scanner = new Scanner (System.in);
+        static ArrayList<Job_Seeker> jobSeekers=new ArrayList<>();
         static ArrayList<String> Username=new ArrayList<String>();
         static ArrayList<String> Password=new ArrayList<String>();
 
 
         public Job_Seeker(String name, String username, String password, int age, String email ) {
-            super(name, age, email);
-
+            super(name,username,password,age, email);
             Username.add(username);
             Password.add(password);
+            jobSeekers.add(this);
         }
 
         public Resume getResume() {
             return resume;
         }
+        static Job_Seeker findJobseeker(String username){
+            for(Job_Seeker jobSeeker:jobSeekers){
+                if(jobSeeker.getUsername().equals(username)){
 
+                    return jobSeeker;
+                }
+            }
+
+            return null;
+
+        }
         public void setResume() {
             System.out.println("please enter years of experience:");
             int experience = Integer.valueOf(scanner.nextLine());
             System.out.println("please enter skills:");
             String skills = scanner.nextLine();
-
+            System.out.println("Success");
             resume = new Resume( getName(), getEmail(), getAge(),experience,skills);
-            System.out.println("Success!");
+
             options();
         }
         public void Browse(){
@@ -54,7 +65,6 @@ import java.util.Scanner;
             Job.leaveReview(n-1);
             options();
         }
-
 
 
         public void update(){
