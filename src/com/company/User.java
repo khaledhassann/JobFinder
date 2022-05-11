@@ -3,28 +3,23 @@ package com.company;
 import java.util.ArrayList;
 
 public class User {
+
     private String name;
     private String username;
     private String password;
     private int age;
     private String email;
-    private ArrayList<String> Username=new ArrayList<String>();
-    private ArrayList<String> Password=new ArrayList<String>();
 
 
-    public User(String name, String username, String password, int age, String email) {
+
+    public User(String name, int age, String email) {
         this.name = name;
-        this.username = username;
-        this.password = password;
+        this.username = "";
+        this.password = "";
         this.age = age;
         this.email = email;
-        Username.add(username);
-        Password.add(password);
-
     }
 
-    public User(String name) {
-    }
 
     public String getName() {
         return name;
@@ -66,14 +61,6 @@ public class User {
         this.email = email;
     }
 
-    public void validation(String username,String password){
-    for( String i:Username ){
-        if(i.equals(username)){
-            System.out.println("Logged in!");
-        }else{
-            System.out.println("Invalid");
-        }
-    }
-    }
+
 }
 
