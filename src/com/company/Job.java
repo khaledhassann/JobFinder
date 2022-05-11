@@ -20,6 +20,11 @@ public class Job {
         allJobs.add(this);
     }
 
+    public Job(String jobTitle, int job_vacancy) {
+        JobTitle = jobTitle;
+        this.job_vacancy = job_vacancy;
+    }
+
     public String getJobTitle() {
         return JobTitle;
     }

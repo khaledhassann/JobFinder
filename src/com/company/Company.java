@@ -8,12 +8,20 @@ public class Company {
     private ArrayList<Job_Poster> posters;
     private ArrayList<Double> Reviews;
     private ArrayList<Job> Jobs;
+    private double review;
 
     private String Description;
 
 
-    public Company() {
-
+    public Company(String name, double review, Job job1, Job job2, Job job3, Job job4, Job job5, Job job6) {
+        this.name = name;
+        this.review = review;
+        Jobs.add(job1);
+        Jobs.add(job2);
+        Jobs.add(job3);
+        Jobs.add(job4);
+        Jobs.add(job5);
+        Jobs.add(job6);
     }
 
     public String getName() {

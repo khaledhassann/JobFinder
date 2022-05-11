@@ -25,7 +25,6 @@ import java.util.Scanner;
         static Job_Seeker findJobseeker(String username){
             for(Job_Seeker jobSeeker:jobSeekers){
                 if(jobSeeker.getUsername().equals(username)){
-
                     return jobSeeker;
                 }
             }
