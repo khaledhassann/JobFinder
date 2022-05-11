@@ -55,6 +55,6 @@ public class Resume {
         this.skills = skills;
     }
     public String toString(){
-        return name+"\n"+email+"\n"+age+"\n"+experience+"\n"+skills;
+        return "Name: " + name+"\n"+"Email: "+email+"\n"+"Age: "+age+"\n"+"Experience: "+experience+"\n"+"Skills: "+skills;
     }
 }

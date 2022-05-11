@@ -17,12 +17,14 @@ public class Job {
         JobTitle = jobTitle;
         this.job_vacancy = job_vacancy;
         applications = new ArrayList<>();
+        this.company = company;
         allJobs.add(this);
     }
 
     public Job(String jobTitle, int job_vacancy) {
         JobTitle = jobTitle;
         this.job_vacancy = job_vacancy;
+        allJobs.add(this);
     }
 
     public String getJobTitle() {
@@ -40,7 +42,12 @@ public class Job {
         }
         return null;
     }
-    static void addApplication(int n ,Application application){
+
+    public static ArrayList<Job> getAllJobs() {
+        return allJobs;
+    }
+
+    static void addApplication(int n , Application application){
         allJobs.get(n).applications.add(application);
     }
 
@@ -70,9 +77,10 @@ public class Job {
     }
 
     static void viewJobs(){
-        int i=0;
+        int i=1;
         for(Job job : allJobs){
-            System.out.println(i+"Job Title: "+job.getJobTitle()+"\n"+"Job vacancies: "+job.job_vacancy+"\n"+"Company name: "+job.company+"\n"+"Company review: "+job.company.getReview()+"\n"+"----------------------");
+            System.out.println(i +"- Job Title: "+job.getJobTitle()+"\n"+"Job vacancies: "+job.job_vacancy+"\n"+"Company name: "+job.company.getName()+"\n"+
+                    "----------------------");
              i++;
         }
 

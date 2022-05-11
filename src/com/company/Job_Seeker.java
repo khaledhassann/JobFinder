@@ -17,6 +17,7 @@ import java.util.Scanner;
             Username.add(username);
             Password.add(password);
             jobSeekers.add(this);
+            appliedJobs = new ArrayList<>();
         }
 
         public Resume getResume() {
@@ -49,8 +50,8 @@ import java.util.Scanner;
             int input = Integer.valueOf(scanner.nextLine());
             if(input==-1){
                 options();
-            }
-            else{
+            } else {
+                System.out.println("Wesel hena");
                 this.apply(input);
                 System.out.println("success!");
             }
@@ -60,27 +61,35 @@ import java.util.Scanner;
         public void apply(int n){
 
             Job.addApplication(n-1,new Application(this));
-            appliedJobs.add(Job.getJob(n).getJobTitle());
+            appliedJobs.add(Job.getJob(n - 1).getJobTitle());
+            Job j = Job_Poster.getJobs().get(n);
+            Job_Poster.getJobs().add(j);
             Job.leaveReview(n-1);
-            options();
+            //options();
         }
 
 
         public void update(){
+            System.out.println(this.getResume());
             this.setResume();
         }
         public void remove(){
-            int i = 1;
-            for(String appliedJob:appliedJobs){
-                System.out.println(i+" "+appliedJob);
-                i++;
-            }
-            System.out.print("Choose what you want delete");
-            int n = Integer.valueOf(scanner.nextLine());
-            appliedJobs.remove(n-1);
-            Job.getJob(appliedJobs.get(n-1)).removeApplication(this);
-            options();
 
+            if(appliedJobs.size() == 0){
+                System.out.println("You have no applications right now!");
+                options();
+            } else {
+                int i = 1;
+                for(String appliedJob:appliedJobs){
+                    System.out.println(i+" "+appliedJob);
+                    i++;
+                }
+                System.out.print("Choose what you want delete: ");
+                int n = Integer.valueOf(scanner.nextLine());
+                Job.getJob(appliedJobs.get(n-1)).removeApplication(this);
+                appliedJobs.remove(n-1);
+                options();
+            }
 
         }
         static boolean validation(String username,String password){
@@ -96,7 +105,8 @@ import java.util.Scanner;
             return false;
         }
         public  void options(){
-            System.out.println("1- Browse job posts & apply "+"\n"+ "2- Set resume" +"\n"+"3- Update resume"+"\n"+"Remove application");
+            System.out.println("1- Browse job posts & apply "+"\n"+ "2- Set resume" +"\n"+"3- Update resume"+"\n"+"4- Remove application"+"\n" +
+                    "5- Back to login menu");
             System.out.println("Please enter option number");
             Scanner scanner = new Scanner(System.in);
             int input = Integer.valueOf(scanner.nextLine());
@@ -113,7 +123,10 @@ import java.util.Scanner;
             if(input==4){
                 this.remove();
             }
-
+            if(input == 5){
+                //Job.allJobs.clear();
+                Controller.showOptions(Controller.login());
+            }
 
 
 

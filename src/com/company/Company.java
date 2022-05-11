@@ -14,6 +14,8 @@ public class Company {
 
 
     public Company(String name, double review, Job job1, Job job2, Job job3, Job job4, Job job5, Job job6) {
+        Jobs = new ArrayList<>();
+        posters = new ArrayList<>();
         this.name = name;
         this.review = review;
         Jobs.add(job1);
@@ -22,6 +24,14 @@ public class Company {
         Jobs.add(job4);
         Jobs.add(job5);
         Jobs.add(job6);
+    }
+    public Company(String name, double review, String description){
+        Jobs = new ArrayList<>();
+        posters = new ArrayList<>();
+        this.name = name;
+        this.review = review;
+        this.Description = description;
+        Reviews = new ArrayList<>();
     }
 
     public String getName() {
@@ -81,5 +91,19 @@ public class Company {
     }
     public void addPoster(Job_Poster poster){
         posters.add(poster);
+    }
+
+    public void viewCompanyJobs(){}
+    @Override
+    public String toString(){
+        return "Company name: " + this.getName() + "\n" +
+                "Company description: " + this.getDescription();
+    }
+
+    public void displayPosters(){
+        for(Job_Poster j: posters){
+            System.out.println("Name: " + j.getName() + "\n" +
+                               "Company: " + j.getCompany().getName());
+        }
     }
 }

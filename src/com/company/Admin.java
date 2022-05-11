@@ -34,6 +34,7 @@ public class Admin extends User {
                 "**************** Admin Options menu ****************\n" +
                         "1- Add job poster\n" +
                         "2- Change company info\n" +
+                        "3- Back to login menu" + "\n" +
                         "Please choose a number: "
         );
         int input = Integer.valueOf(scanner.nextLine());
@@ -42,6 +43,10 @@ public class Admin extends User {
         }
         if(input==2){
               this.ChangeInfo();
+        }
+        if(input == 3){
+            Job.allJobs.clear();
+            Controller.showOptions(Controller.login());
         }
 
     }
@@ -52,6 +57,7 @@ public class Admin extends User {
 
 
     public void Addposter(){
+        this.company.displayPosters();
         System.out.print("Please enter Poster's name:");
         String name = scanner.nextLine();
 
@@ -71,6 +77,8 @@ public class Admin extends User {
         this.options();
     }
     public void ChangeInfo(){
+
+        System.out.println(this.getCompany());
 
         System.out.println("Choose what you want to change:\n"+"1.Change company name.\n"+"2.Change company description");
         String n = scanner.nextLine();

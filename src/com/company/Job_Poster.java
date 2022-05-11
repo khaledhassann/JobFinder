@@ -5,9 +5,12 @@ import java.util.Scanner;
 
 
 public class Job_Poster extends User{
+
+    Controller c1 = new Controller();
+
     static Scanner scanner = new Scanner(System.in);
     private Company company;
-    private ArrayList<Job> jobs;
+    static private ArrayList<Job> jobs;
     static ArrayList<String> Username=new ArrayList<String>();
     static ArrayList<Job_Poster> JobPosters=new ArrayList<>();
     static ArrayList<String> Password=new ArrayList<String>();
@@ -19,6 +22,10 @@ public class Job_Poster extends User{
         Username.add(username);
         Password.add(password);
         JobPosters.add(this);
+    }
+
+    public static void setJobs(ArrayList<Job> jobs) {
+        Job_Poster.jobs = jobs;
     }
 
     static Job_Poster findJobPoster(String username){
@@ -37,7 +44,7 @@ public class Job_Poster extends User{
         this.company = company;
     }
 
-    public ArrayList<Job> getJobs() {
+    static public ArrayList<Job> getJobs() {
         return jobs;
     }
 
@@ -51,19 +58,28 @@ public class Job_Poster extends User{
     }
     public void view(){
         int n = 0;
-        System.out.println(jobs);
+        viewApplications();
         System.out.println("Specify the name of which job applications to view :");
         String name = scanner.nextLine();
         for(Job job:jobs){
             if(job.getJobTitle().equals(name)){
                 job.viewApplications();
-                this.accept(job );
+                this.accept(job);
             }
         }
         this.options();
 
 
     }
+
+    public void viewApplications(){
+        System.out.println(Job.getAllJobs().size());
+//        for(Job j: Job.getAllJobs()){
+//            j.viewApplications();
+//        }
+
+    }
+
     public void accept(Job job ){
         System.out.print("enter the application number you want to accept , if you want to exit type -1: ");
         int num = Integer.valueOf(scanner.nextLine());
@@ -83,6 +99,7 @@ public class Job_Poster extends User{
                              "1- Add jobs\n" +
                              "2- View applications\n" +
                              "3- Accept/Reject applicants\n" +
+                             "4- Back to login menu" + "\n" +
                              "Please choose a number: "
              );
 
@@ -96,6 +113,10 @@ public class Job_Poster extends User{
              }
              if (input == 3) {
                  this.view();
+             }
+             if (input == 4){
+                 //Job.allJobs.clear();
+                 Controller.showOptions(Controller.login());
              }
          }
 
