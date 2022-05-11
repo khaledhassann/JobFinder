@@ -58,7 +58,7 @@ import java.util.Scanner;
         public void update(){
             this.setResume();
         }
-        public void remove(int x){
+        public void remove(){
             int i = 1;
             for(String appliedJob:appliedJobs){
                 System.out.println(i+" "+appliedJob);
@@ -67,6 +67,8 @@ import java.util.Scanner;
             System.out.print("Choose what you want delete");
             int n = Integer.valueOf(scanner.nextLine());
             appliedJobs.remove(n-1);
+            Job.getJob(appliedJobs.get(n-1)).removeApplication(this);
+
 
 
         }
@@ -106,7 +108,6 @@ import java.util.Scanner;
 
         }
 
-        public void
 
     }
 

@@ -21,10 +21,19 @@ public class Job {
     }
 
     public String getJobTitle() {
-        return JobTitle
+        return JobTitle;
     }
     static Job getJob(int n) {
         return allJobs.get(n);
+    }
+    static Job getJob(String jobTitle){
+        for(Job job:allJobs){
+            if(job.getJobTitle().equals(jobTitle)){
+                return job;
+            }
+
+        }
+        return null;
     }
     static void addApplication(int n ,Application application){
         allJobs.get(n).applications.add(application);
