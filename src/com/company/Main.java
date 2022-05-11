@@ -1,5 +1,6 @@
 package com.company;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -11,44 +12,46 @@ public class Main {
     public static void main(String[] args) {
         showOptions(login());
     }
-    static String login(){
+    static ArrayList<String> login(){
+        ArrayList<String>inputs=new ArrayList<>();
         while(true) {
             System.out.println("Please specify the type of user:\n"+"1.Admin\n"+"2.Job Poster\n"+"3.Job Seeker\n");
-            String input = scanner.nextLine();
-            if(!(input.equals("1")||input.equals("2")||input.equals("3"))){
+             inputs.add(scanner.nextLine());
+            if(!(inputs.get(0).equals("1")||inputs.get(0).equals("2")||inputs.get(0).equals("3"))){
                 System.out.println("Invalid type of user");
                 System.out.println("-------------------------------------------------");
                 continue;
             }
             System.out.print("Enter Username:");
             String username = scanner.nextLine();
+            inputs.add(username);
             System.out.print("Enter Password:");
             String password = scanner.nextLine();
 
 
-            if(input.equals("1")){
+            if(inputs.get(0).equals("1")){
 
                 if (Admin.validation(username, password)) {
                     System.out.println("Logged in!");
-                    return input;
+                    return inputs ;
                 }
                 System.out.println("Invalid username or password , please try again.");
                 System.out.println("-------------------------------------------------");
                 continue;
             }
-            if(input.equals("2")){
+            if(inputs.get(0).equals("2")){
                 if (Job_Poster.validation(username, password)) {
                     System.out.println("Logged in!");
-                    return input;
+                    return inputs;
                 }
                 System.out.println("Invalid username or password , please try again.");
                 System.out.println("-------------------------------------------------");
                 continue;
             }
-            if(input.equals("3")){
+            if(inputs.get(0).equals("3")){
                 if (Job_Seeker.validation(username, password)) {
                     System.out.println("Logged in!");
-                    return input;
+                    return inputs;
                 }
 
                 System.out.println("Invalid username or password , please try again.");
@@ -58,16 +61,16 @@ public class Main {
 
         }
     }
-    static void showOptions(String n){
+    static void showOptions(ArrayList<String> inputs){
 
-        if(n.equals("1")){
-            Habiba.options();
+        if(inputs.get(0).equals("1")){
+            Admin.findAdmin(inputs.get(1)).options();
         }
-        if(n.equals("2")){
-            Omar.options();
+        if(inputs.get(0).equals("2")){
+            Job_Poster.findJobPoster(inputs.get(1)).options();
         }
-        if(n.equals("3")){
-            Khaled.options();
+        if(inputs.get(0).equals("3")){
+            Job_Seeker.findJobseeker(inputs.get(1)).options();
         }
 
     }

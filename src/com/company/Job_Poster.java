@@ -9,16 +9,26 @@ public class Job_Poster extends User{
     private Company company;
     private ArrayList<Job> jobs;
     static ArrayList<String> Username=new ArrayList<String>();
+    static ArrayList<Job_Poster> JobPosters=new ArrayList<>();
     static ArrayList<String> Password=new ArrayList<String>();
 
     public Job_Poster(String name, String username, String password, int age, String email, Company company) {
-        super(name, age, email);
+        super(name,username,password,age, email);
         this.company = company;
         jobs = new ArrayList<>();
         Username.add(username);
         Password.add(password);
+        JobPosters.add(this);
     }
 
+    static Job_Poster findJobPoster(String username){
+        for(Job_Poster jobPoster:JobPosters){
+            if(jobPoster.getUsername().equals(username)){
+                return jobPoster;
+            }
+        }
+        return null;
+    }
     public Company getCompany() {
         return company;
     }
