@@ -29,6 +29,8 @@ import java.util.Scanner;
             String skills = scanner.nextLine();
 
             resume = new Resume( getName(), getEmail(), getAge(),experience,skills);
+            System.out.println("Success!");
+            options();
         }
         public void Browse(){
 
@@ -68,7 +70,7 @@ import java.util.Scanner;
             int n = Integer.valueOf(scanner.nextLine());
             appliedJobs.remove(n-1);
             Job.getJob(appliedJobs.get(n-1)).removeApplication(this);
-
+            options();
 
 
         }
