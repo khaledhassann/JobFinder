@@ -3,7 +3,10 @@ package com.company;
 import java.util.Scanner;
 
 public class Main {
-    //comment
+    static Company company = new Company();
+    static Admin Habiba = new Admin("Habiba", "Habiba10", "123", 20, "habiba@gmail.com", company);
+    static Job_Seeker Khaled = new Job_Seeker("khaled", "Khaled10", "1234", 20, "habiba@gmail.com");
+    static Job_Poster Omar = new Job_Poster("Omar", "Omar10", "12345", 20, "habiba@gmail.com", company);
     static Scanner scanner=new Scanner(System.in);
     public static void main(String[] args) {
         showOptions(login());
@@ -21,12 +24,7 @@ public class Main {
             String username = scanner.nextLine();
             System.out.print("Enter Password:");
             String password = scanner.nextLine();
-            Company company = new Company();
-            Resume resume = new Resume("anjax");
 
-            Admin Habiba = new Admin("Habiba", "Habiba10", "123", 20, "habiba@gmail.com", company);
-            Job_Seeker Khaled = new Job_Seeker("khaled", "Khaled10", "1234", 20, "habiba@gmail.com", resume);
-            Job_Poster Omar = new Job_Poster("Omar", "Omar10", "12345", 20, "habiba@gmail.com", company);
 
             if(input.equals("1")){
 
@@ -52,6 +50,7 @@ public class Main {
                     System.out.println("Logged in!");
                     return input;
                 }
+
                 System.out.println("Invalid username or password , please try again.");
                 System.out.println("-------------------------------------------------");
                 continue;
@@ -62,14 +61,15 @@ public class Main {
     static void showOptions(String n){
 
         if(n.equals("1")){
-            Admin.options();
+            Habiba.options();
         }
         if(n.equals("2")){
-            Job_Poster.options();
+            Omar.options();
         }
         if(n.equals("3")){
-            Job_Seeker.options();
+            Khaled.options();
         }
 
     }
+
 }

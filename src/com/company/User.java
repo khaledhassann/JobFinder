@@ -3,13 +3,13 @@ package com.company;
 import java.util.ArrayList;
 
 public class User {
+
     private String name;
     private String username;
     private String password;
     private int age;
     private String email;
-    static ArrayList<String> Username=new ArrayList<String>();
-    static ArrayList<String> Password=new ArrayList<String>();
+
 
 
     public User(String name, int age, String email) {
@@ -18,12 +18,8 @@ public class User {
         this.password = "";
         this.age = age;
         this.email = email;
-
-
     }
 
-    public User(String name) {
-    }
 
     public String getName() {
         return name;

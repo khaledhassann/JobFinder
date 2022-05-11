@@ -6,6 +6,7 @@ import java.util.Scanner ;
 public class Admin extends User {
     static Scanner scanner = new Scanner(System.in);
     private Company company;
+
     static ArrayList<String> Username = new ArrayList<String>();
     static ArrayList<String> Password = new ArrayList<String>();
 
@@ -18,6 +19,23 @@ public class Admin extends User {
     }
 
 
+      public void options(){
+
+        System.out.println(
+                "**************** Admin Options menu ****************\n" +
+                        "1- Add job poster\n" +
+                        "2- Change company info\n" +
+                        "Please choose a number: "
+        );
+        int input = Integer.valueOf(scanner.nextLine());
+        if(input==1){
+            this.Addposter();
+        }
+        if(input==2){
+              this.ChangeInfo();
+        }
+
+    }
 
     public Company getCompany() {
         return company;
@@ -25,22 +43,23 @@ public class Admin extends User {
 
 
     public void Addposter(){
-        System.out.print("Please enter Poster's name");
+        System.out.print("Please enter Poster's name:");
         String name = scanner.nextLine();
 
-        System.out.print("Please enter Poster's username");
+        System.out.print("Please enter Poster's username:");
         String username = scanner.nextLine();
 
-        System.out.print("Please enter Poster's password");
+        System.out.print("Please enter Poster's password:");
         String password = scanner.nextLine();
 
-        System.out.print("Please enter Poster's age");
+        System.out.print("Please enter Poster's age:");
         int age = Integer.valueOf(scanner.nextLine());
 
-        System.out.print("Please enter Poster's email");
+        System.out.print("Please enter Poster's email:");
         String email = scanner.nextLine();
 
         company.addPoster(new Job_Poster(name,  username,  password,  age,  email, getCompany()));
+        this.options();
     }
     public void ChangeInfo(){
 
@@ -56,6 +75,7 @@ public class Admin extends User {
             String desc = scanner.nextLine();
             company.setDescription(desc);
         }
+        this.options();
     }
     static boolean validation(String username,String password){
         int i = 0;
@@ -69,9 +89,7 @@ public class Admin extends User {
         }
         return false;
     }
-    static void options(){
-        System.out.println("admin options");
-    }
+
 
 
 }

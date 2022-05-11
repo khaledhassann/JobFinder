@@ -8,7 +8,7 @@ public class Company {
     private ArrayList<Job_Poster> posters;
     private ArrayList<Double> Reviews;
     private ArrayList<Job> Jobs;
-    private Double Review;
+
     private String Description;
 
 
@@ -44,8 +44,8 @@ public class Company {
         return Reviews;
     }
 
-    public void setReviews(ArrayList<Double> reviews) {
-        Reviews = reviews;
+    public void addReview(double reviews) {
+        Reviews.add(reviews);
     }
 
     public ArrayList<Job> getJobs() {
@@ -57,11 +57,11 @@ public class Company {
     }
 
     public Double getReview() {
-        return Review;
-    }
-
-    public void setReview(Double review) {
-        Review = review;
+        double sum = 0 ;
+        for(double review : Reviews){
+            sum = review + sum;
+        }
+        return sum/Reviews.size();
     }
 
     public String getDescription() {

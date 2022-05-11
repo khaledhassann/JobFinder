@@ -1,115 +1,77 @@
 package com.company;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Job {
-    private String JobDescription;
-    private String Requirement;
-    private int Salary;
-    private String Location;
-    private String Benefits;
-    private String Responsibilities_Duties;
-    private String ExperienceDetails;
+    static Scanner scanner = new Scanner(System.in);
     private String JobTitle;
-    private String WorkingHours;
+    private Company company;
+    static ArrayList<Job> allJobs = new ArrayList<>();
     private ArrayList<Application> applications;
 
+    private int job_vacancy;
 
 
-    public Job(String jobDescription, String requirement, int salary, String location, String benefits, String responsibilities_Duties, String experienceDetails, String jobTitle, String workingHours, ArrayList<Application> applications) {
-        JobDescription = jobDescription;
-        Requirement = requirement;
-        Salary = salary;
-        Location = location;
-        Benefits = benefits;
-        Responsibilities_Duties = responsibilities_Duties;
-        ExperienceDetails = experienceDetails;
+    public Job(String jobTitle, int job_vacancy , Company company) {
         JobTitle = jobTitle;
-        WorkingHours = workingHours;
-        this.applications = applications;
-    }
-
-
-
-
-    public String getJobDescription() {
-        return JobDescription;
-    }
-
-    public String getRequirement() {
-        return Requirement;
-    }
-
-    public int getSalary() {
-        return Salary;
-    }
-
-    public String getLocation() {
-        return Location;
-    }
-
-    public String getBenefits() {
-        return Benefits;
-    }
-
-    public String getResponsibilities_Duties() {
-        return Responsibilities_Duties;
-    }
-
-    public String getExperienceDetails() {
-        return ExperienceDetails;
+        this.job_vacancy = job_vacancy;
+        applications = new ArrayList<>();
+        allJobs.add(this);
     }
 
     public String getJobTitle() {
-        return JobTitle;
+        return JobTitle
+    }
+    static Job getJob(int n) {
+        return allJobs.get(n);
+    }
+    static void addApplication(int n ,Application application){
+        allJobs.get(n).applications.add(application);
     }
 
-    public String getWorkingHours() {
-        return WorkingHours;
+    public void viewApplications(){
+        int i = 0;
+        for(Application application: applications){
+            System.out.println("Application no. "+i);
+            application.viewApplication();
+            System.out.println("--------------------");
+            i++;
+        }
     }
 
-    public ArrayList<Application> getApplications() {
-        return applications;
+    public int getJob_vacancy() { return job_vacancy; }
+
+    public void acceptApplication(int n){
+        applications.get(n-1).accept();
     }
 
-    public void setJobDescription(String jobDescription) {
-        JobDescription = jobDescription;
+    static void leaveReview(int n){
+        System.out.println("please leave a review between 0 and 5");
+        double input = Double.valueOf(scanner.nextLine());
+        allJobs.get(n).company.addReview(input);
+    }
+    public Company getCompany(){
+        return company;
     }
 
-    public void setRequirement(String requirement) {
-        Requirement = requirement;
+    static void viewJobs(){
+        int i=0;
+        for(Job job : allJobs){
+            System.out.println(i+"Job Title: "+job.getJobTitle()+"\n"+"Job vacancies: "+job.job_vacancy+"\n"+"Company name: "+job.company+"\n"+"Company review: "+job.company.getReview()+"\n"+"----------------------");
+             i++;
+        }
+
+
+    }
+    public void removeApplication(Job_Seeker jobSeeker){
+        for(Application app :applications ){
+            if(app.getJobSeeker().equals(jobSeeker)){
+                applications.remove(app);
+            }
+        }
     }
 
-    public void setSalary(int salary) {
-        Salary = salary;
-    }
 
-    public void setLocation(String location) {
-        Location = location;
-    }
-
-    public void setBenefits(String benefits) {
-        Benefits = benefits;
-    }
-
-    public void setResponsibilities_Duties(String responsibilities_Duties) {
-        Responsibilities_Duties = responsibilities_Duties;
-    }
-
-    public void setExperienceDetails(String experienceDetails) {
-        ExperienceDetails = experienceDetails;
-    }
-
-    public void setJobTitle(String jobTitle) {
-        JobTitle = jobTitle;
-    }
-
-    public void setWorkingHours(String workingHours) {
-        WorkingHours = workingHours;
-    }
-
-    public void setApplications(ArrayList<Application> applications) {
-        this.applications = applications;
-    }
+    // push temsah
 }
-

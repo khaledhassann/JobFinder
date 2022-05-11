@@ -1,45 +1,24 @@
 package com.company;
 
 public class Application {
-    private Resume resume;
-    private Company company;
-    private Job job;
-    private boolean applicationstatus;
+    private Job_Seeker jobSeeker;
 
-    public Application(Resume resume) {
-        this.resume = resume;
+    private boolean accepted;
+    public Application(Job_Seeker jobSeeker) {
+        this.jobSeeker=jobSeeker;
+        accepted = false;
+    }
+    public void accept(){
+        this.accepted = true;
+    }
+    public void viewApplication(){
+        System.out.println(jobSeeker.getResume());
+        System.out.println("Status: "+accepted);
+    }
+    public Job_Seeker getJobSeeker(){
+        return this.jobSeeker;
     }
 
-    public Resume getResume() {
-        return resume;
-    }
 
-    public void setResume(Resume resume) {
-        this.resume = resume;
-    }
-
-    public Company getCompany() {
-        return company;
-    }
-
-    public void setCompany(Company company) {
-        this.company = company;
-    }
-
-    public Job getJob() {
-        return job;
-    }
-
-    public void setJob(Job job) {
-        this.job = job;
-    }
-
-    public boolean isApplicationstatus() {
-        return applicationstatus;
-    }
-
-    public void setApplicationstatus(boolean applicationstatus) {
-        this.applicationstatus = applicationstatus;
-    }
 
 }
