@@ -129,7 +129,7 @@ public class Controller {
 
 
     static Admin Habiba = new Admin("Habiba", "Habiba10", "123", 20, "habiba@gmail.com", Siemens);
-    static Job_Seeker Khaled = new Job_Seeker("khaled", "Khaled10", "1234", 20, "kmhtaha@gmail.com");
+    static Job_Seeker Khaled = new Job_Seeker("khaled", "Khaled10", "1234", 20, "kmhtaha@gmail.com", 5, "Gamed mot");
     static Job_Poster Omar = new Job_Poster("Omar", "Omar10", "12345", 20, "omarsonny789@gmail.com", Siemens);
 
 
@@ -145,8 +145,6 @@ public class Controller {
                 Controller.setMicrosoftJobs();
                 Controller.createSiemensJobs();
                 num++;
-            } else {
-
             }
 
             System.out.println("Please specify the type of user:\n"+"1.Admin\n"+"2.Job Poster\n"+"3.Job Seeker\n"+"4.Exit system\n");
@@ -154,6 +152,7 @@ public class Controller {
             if(!(inputs.get(0).equals("1")||inputs.get(0).equals("2")||inputs.get(0).equals("3") ||inputs.get(0).equals("4"))){
                 System.out.println("Invalid type of user");
                 System.out.println("-------------------------------------------------");
+                inputs.clear();
                 continue;
             }
             if(inputs.get(0).equals("4")){
@@ -174,6 +173,7 @@ public class Controller {
                 }
                 System.out.println("Invalid username or password , please try again.");
                 System.out.println("-------------------------------------------------");
+                inputs.clear();
                 continue;
             }
             if(inputs.get(0).equals("2")){
@@ -183,6 +183,7 @@ public class Controller {
                 }
                 System.out.println("Invalid username or password , please try again.");
                 System.out.println("-------------------------------------------------");
+                inputs.clear();
                 continue;
             }
             if(inputs.get(0).equals("3")){
@@ -193,6 +194,7 @@ public class Controller {
 
                 System.out.println("Invalid username or password , please try again.");
                 System.out.println("-------------------------------------------------");
+                inputs.clear();
                 continue;
             }
 

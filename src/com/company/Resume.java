@@ -15,6 +15,8 @@ public class Resume {
         this.skills = skills;
     }
 
+    public Resume(){}
+
     public String getName() {
         return name;
     }

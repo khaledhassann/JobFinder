@@ -22,6 +22,7 @@ public class Job_Poster extends User{
         Username.add(username);
         Password.add(password);
         JobPosters.add(this);
+        this.company.addPoster(this);
     }
 
     public static void setJobs(ArrayList<Job> jobs) {
@@ -52,7 +53,18 @@ public class Job_Poster extends User{
         System.out.println("Please specify job title:");
         String jobTitle = scanner.nextLine();
         System.out.println("Please specify job vacancy (in numbers):");
-        int job_vacancy = Integer.valueOf(scanner.nextLine());
+        int job_vacancy;
+        while(true){
+            try{
+                job_vacancy = Integer.parseInt(scanner.nextLine());
+                break;
+            } catch(NumberFormatException e){
+                System.out.println("Please re-enter vacancy in numbers: ");
+                continue;
+            }
+        }
+
+
         this.company.addJob(new Job(jobTitle, job_vacancy , this.company));
 //        jobs.add(new Job(jobTitle, job_vacancy , this.company));
         this.options();
@@ -63,8 +75,12 @@ public class Job_Poster extends User{
         String name = scanner.nextLine();
         for(Job job: this.company.getJobs()){
             if(job.getJobTitle().equals(name)){
-                job.viewApplications();
-                this.accept(job);
+                if(job.getApplications().size() == 0){
+                    System.out.println("No applications for this job just yet!");
+                } else{
+                    job.viewApplications();
+                    this.accept(job);
+                }
             }
         }
         this.options();
@@ -75,20 +91,28 @@ public class Job_Poster extends User{
     public void viewApplications(){
         int n =1;
         for(Job job: this.company.getJobs()){
-            System.out.println(n+" "+job.getJobTitle()+" "+job.getApplications().size());
+            System.out.println(n+"- "+job.getJobTitle()+" "+job.getApplications().size());
             n++;
         }
 
     }
 
     public void accept(Job job ){
-        System.out.print("enter the application number you want to accept , if you want to exit type -1: ");
-        int num = Integer.valueOf(scanner.nextLine());
-        if (num==-1){
-            return;
+        System.out.print("Enter the application number you want to accept , if you want to exit type -1: ");
+        while(true){
+            int num = Integer.parseInt(scanner.nextLine());
+            if (num==-1){
+                return;
+            } else if (num == 0 || num < -1){
+                System.out.print("Invalid option please re-enter: ");
+                continue;
+            } else{
+                job.acceptApplication(num);
+                return;
+            }
         }
-        job.acceptApplication(num);
-        return;
+
+
 
 
     }
@@ -99,26 +123,30 @@ public class Job_Poster extends User{
                      "****************Job Poster Options menu ****************\n" +
                              "1- Add jobs\n" +
                              "2- View applications\n" +
-                             "3- Accept/Reject applicants\n" +
-                             "4- Back to login menu" + "\n" +
+                             "3- Back to login menu" + "\n" +
                              "Please choose a number: "
              );
 
+             try{
+                 int input = Integer.parseInt(scanner.nextLine());
+                 if (input == 1) {
+                     this.addJob();
+                 } else if (input == 2) {
+                     this.view();
+                 } else if (input == 3){
+                     Controller.showOptions(Controller.login());
+                 } else{
+                     System.out.println("Invalid choice");
+                     System.out.println("-------------------------------------------------");
+                     options();
+                 }
+             } catch(NumberFormatException e) {
+                 System.out.println("Invalid choice");
+                 System.out.println("-------------------------------------------------");
+                 options();
+             }
 
-             int input = Integer.valueOf(scanner.nextLine());
-             if (input == 1) {
-                 this.addJob();
-             }
-             if (input == 2) {
-                 this.view();
-             }
-             if (input == 3) {
-                 this.view();
-             }
-             if (input == 4){
-                 Job.allJobs.clear();
-                 Controller.showOptions(Controller.login());
-             }
+
          }
 
     }

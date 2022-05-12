@@ -104,9 +104,11 @@ public class Company {
     }
 
     public void displayPosters(){
+        int n = 1;
         for(Job_Poster j: posters){
-            System.out.println("Name: " + j.getName() + "\n" +
-                               "Company: " + j.getCompany().getName());
+            System.out.println(n + "- Name: " + j.getName() +
+                               ", Company: " + j.getCompany().getName());
+            n++;
         }
     }
 }

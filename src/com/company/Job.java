@@ -58,7 +58,7 @@ public class Job {
     public void viewApplications(){
         int i = 0;
         for(Application application: applications){
-            System.out.println("Application no. "+i);
+            System.out.println("Application no. "+(i+1));
             application.viewApplication();
             System.out.println("--------------------");
             i++;
@@ -68,7 +68,11 @@ public class Job {
     public int getJob_vacancy() { return job_vacancy; }
 
     public void acceptApplication(int n){
-        applications.get(n-1).accept();
+        if(n > applications.size()){
+            System.out.println("Application doesn't exist.");
+        } else{
+            applications.get(n-1).accept();
+        }
     }
 
     static void leaveReview(int n){
@@ -91,8 +95,11 @@ public class Job {
 
     }
     public void removeApplication(Job_Seeker jobSeeker){
+//        if(applications.size() == 0){
+//            System.out.println("Mafish haga fel applications array");
+//        }
         for(Application app :applications ){
-            if(app.getJobSeeker().equals(jobSeeker)){
+            if(app.getJobSeeker().getUsername().equals(jobSeeker.getUsername())){
                 applications.remove(app);
             }
         }

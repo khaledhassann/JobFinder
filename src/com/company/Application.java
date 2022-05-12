@@ -10,10 +10,15 @@ public class Application {
     }
     public void accept(){
         this.accepted = true;
+        System.out.println("Application approved!");
     }
     public void viewApplication(){
         System.out.println(jobSeeker.getResume());
-        System.out.println("Status: "+accepted);
+        if(accepted){
+            System.out.println("Status: Accepted");
+        } else{
+            System.out.println("Status: Pending");
+        }
     }
     public Job_Seeker getJobSeeker(){
         return this.jobSeeker;

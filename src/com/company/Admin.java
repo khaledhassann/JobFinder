@@ -7,9 +7,9 @@ public class Admin extends User {
     static Scanner scanner = new Scanner(System.in);
     private Company company;
 
-    static ArrayList<String> Username = new ArrayList<String>();
+    static ArrayList<String> Username = new ArrayList<>();
     static ArrayList<Admin> Admins = new ArrayList<>();
-    static ArrayList<String> Password = new ArrayList<String>();
+    static ArrayList<String> Password = new ArrayList<>();
 
 
     public Admin(String name, String username, String password, int age, String email, Company company) {
@@ -37,17 +37,26 @@ public class Admin extends User {
                         "3- Back to login menu" + "\n" +
                         "Please choose a number: "
         );
-        int input = Integer.valueOf(scanner.nextLine());
-        if(input==1){
-            this.Addposter();
+
+        try{
+            int input = Integer.parseInt(scanner.nextLine());
+            if(input==1){
+                this.Addposter();
+            } else if(input==2){
+                this.ChangeInfo();
+            } else if(input == 3){
+                Controller.showOptions(Controller.login());
+            } else{
+                System.out.println("Invalid choice");
+                System.out.println("-------------------------------------------------");
+                options();
+            }
+        } catch (NumberFormatException e){
+            System.out.println("Invalid choice!");
+            System.out.println("-------------------------------------------------");
+            options();
         }
-        if(input==2){
-              this.ChangeInfo();
-        }
-        if(input == 3){
-            Job.allJobs.clear();
-            Controller.showOptions(Controller.login());
-        }
+
 
     }
 
@@ -67,13 +76,23 @@ public class Admin extends User {
         System.out.print("Please enter Poster's password:");
         String password = scanner.nextLine();
 
+        int age;
         System.out.print("Please enter Poster's age:");
-        int age = Integer.valueOf(scanner.nextLine());
+        while(true){
+            try{
+                age = Integer.parseInt(scanner.nextLine());
+                break;
+            } catch(NumberFormatException e) {
+                System.out.print("Please re-enter right age: ");
+                continue;
+            }
+        }
+
 
         System.out.print("Please enter Poster's email:");
         String email = scanner.nextLine();
 
-        company.addPoster(new Job_Poster(name,  username,  password,  age,  email, getCompany()));
+        new Job_Poster(name,  username,  password,  age,  email, getCompany());
         this.options();
     }
     public void ChangeInfo(){
@@ -86,11 +105,14 @@ public class Admin extends User {
             System.out.print("Enter company name:");
             String name = scanner.nextLine();
             company.setName(name);
-        }
-        if(n.equals("2")){
+        } else if(n.equals("2")){
             System.out.print("Enter company description:");
             String desc = scanner.nextLine();
             company.setDescription(desc);
+        } else {
+            System.out.println("Invalid choice!");
+            System.out.println("-------------------------------------------------");
+            ChangeInfo();
         }
         this.options();
     }
