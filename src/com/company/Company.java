@@ -8,22 +8,37 @@ public class Company {
     private ArrayList<Job_Poster> posters;
     private ArrayList<Double> Reviews;
     private ArrayList<Job> Jobs;
-    private Double Review;
+    private double review;
+
     private String Description;
 
 
-    public Company(String name, Admin admin, ArrayList<Job_Poster> posters, ArrayList<Double> reviews, ArrayList<Job> jobs, Double review, String description) {
+    public Company(String name, double review, Job job1, Job job2, Job job3, Job job4, Job job5, Job job6) {
+        Jobs = new ArrayList<>();
+        posters = new ArrayList<>();
         this.name = name;
-        Admin = admin;
-        this.posters = posters;
-        Reviews = reviews;
-        Jobs = jobs;
-        Review = review;
-        Description = description;
+        this.review = review;
+        Jobs.add(job1);
+        Jobs.add(job2);
+        Jobs.add(job3);
+        Jobs.add(job4);
+        Jobs.add(job5);
+        Jobs.add(job6);
+    }
+    public Company(String name, double review, String description){
+        Jobs = new ArrayList<>();
+        posters = new ArrayList<>();
+        this.name = name;
+        this.review = review;
+        this.Description = description;
+        Reviews = new ArrayList<>();
     }
 
     public String getName() {
         return name;
+    }
+    public void addJob(Job job){
+        Jobs.add(job);
     }
 
     public void setName(String name) {
@@ -50,8 +65,8 @@ public class Company {
         return Reviews;
     }
 
-    public void setReviews(ArrayList<Double> reviews) {
-        Reviews = reviews;
+    public void addReview(double reviews) {
+        Reviews.add(reviews);
     }
 
     public ArrayList<Job> getJobs() {
@@ -63,11 +78,11 @@ public class Company {
     }
 
     public Double getReview() {
-        return Review;
-    }
-
-    public void setReview(Double review) {
-        Review = review;
+        double sum = 0 ;
+        for(double review : Reviews){
+            sum = review + sum;
+        }
+        return sum/Reviews.size();
     }
 
     public String getDescription() {
@@ -76,5 +91,24 @@ public class Company {
 
     public void setDescription(String description) {
         Description = description;
+    }
+    public void addPoster(Job_Poster poster){
+        posters.add(poster);
+    }
+
+    public void viewCompanyJobs(){}
+    @Override
+    public String toString(){
+        return "Company name: " + this.getName() + "\n" +
+                "Company description: " + this.getDescription();
+    }
+
+    public void displayPosters(){
+        int n = 1;
+        for(Job_Poster j: posters){
+            System.out.println(n + "- Name: " + j.getName() +
+                               ", Company: " + j.getCompany().getName());
+            n++;
+        }
     }
 }

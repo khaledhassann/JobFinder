@@ -7,9 +7,15 @@ public class Resume {
     private int experience;
     private String skills;
 
-    public Resume(String name) {
+    public Resume(String name, String email, int age, int experience, String skills) {
         this.name = name;
+        this.email = email;
+        this.age = age;
+        this.experience = experience;
+        this.skills = skills;
     }
+
+    public Resume(){}
 
     public String getName() {
         return name;
@@ -49,5 +55,8 @@ public class Resume {
 
     public void setSkills(String skills) {
         this.skills = skills;
+    }
+    public String toString(){
+        return "Name: " + name+"\n"+"Email: "+email+"\n"+"Age: "+age+"\n"+"Experience: "+experience+"\n"+"Skills: "+skills;
     }
 }
