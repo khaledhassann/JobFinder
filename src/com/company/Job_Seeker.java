@@ -62,8 +62,8 @@ import java.util.Scanner;
 
             Job.addApplication(n-1,new Application(this));
             appliedJobs.add(Job.getJob(n - 1).getJobTitle());
-            Job j = Job_Poster.getJobs().get(n);
-            Job_Poster.getJobs().add(j);
+            //Job j = Job_Poster.getJobs().get(n-1);
+            //Job_Poster.getJobs().add(j);
             Job.leaveReview(n-1);
             //options();
         }
@@ -124,7 +124,7 @@ import java.util.Scanner;
                 this.remove();
             }
             if(input == 5){
-                //Job.allJobs.clear();
+                Job.allJobs.clear();
                 Controller.showOptions(Controller.login());
             }
 

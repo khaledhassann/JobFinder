@@ -43,6 +43,10 @@ public class Job {
         return null;
     }
 
+    public ArrayList<Application> getApplications() {
+        return applications;
+    }
+
     public static ArrayList<Job> getAllJobs() {
         return allJobs;
     }
@@ -92,6 +96,10 @@ public class Job {
                 applications.remove(app);
             }
         }
+    }
+    @Override
+    public String toString(){
+        return JobTitle+" "+job_vacancy;
     }
 
 

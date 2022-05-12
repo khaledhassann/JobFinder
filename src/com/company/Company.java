@@ -37,6 +37,9 @@ public class Company {
     public String getName() {
         return name;
     }
+    public void addJob(Job job){
+        Jobs.add(job);
+    }
 
     public void setName(String name) {
         this.name = name;

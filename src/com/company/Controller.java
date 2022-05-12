@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 public class Controller {
 
+    static int num = 0;
+
             static Company Google = new Company("Google", 4.5, "This is Google's description");
             static Company Amazon = new Company("Amazon", 4.7, "This is Amazon's description");
             static Company Microsoft = new Company("Microsoft", 5.0, "This is Microsoft's description");
@@ -97,32 +99,38 @@ public class Controller {
     }
 
     // creating Siemens jobs
-    static public ArrayList<Job> createSiemensJobs(){
+    static public void createSiemensJobs(){
         Job SoftwareSiemens = new Job("Software Engineer", 4, Siemens);
         Job AccountantSiemens = new Job("Accountant", 2, Siemens);
         Job ManagerSiemens = new Job("Manager", 4, Siemens);
         Job HRSiemens = new Job("HR", 5, Siemens);
         Job DesignerSiemens = new Job("Designer", 2, Siemens);
         Job AnalystSiemens = new Job("Analyst", 6, Siemens);
-        ArrayList<Job> SiemensJobs = new ArrayList<>();
-        SiemensJobs.add(SoftwareSiemens);
-        SiemensJobs.add(AccountantSiemens);
-        SiemensJobs.add(ManagerSiemens);
-        SiemensJobs.add(HRSiemens);
-        SiemensJobs.add(DesignerSiemens);
-        SiemensJobs.add(AnalystSiemens);
-        return SiemensJobs;
+//        ArrayList<Job> SiemensJobs = new ArrayList<>();
+//        SiemensJobs.add(SoftwareSiemens);
+//        SiemensJobs.add(AccountantSiemens);
+//        SiemensJobs.add(ManagerSiemens);
+//        SiemensJobs.add(HRSiemens);
+//        SiemensJobs.add(DesignerSiemens);
+//        SiemensJobs.add(AnalystSiemens);
+        Siemens.getJobs().add(SoftwareSiemens);
+        Siemens.getJobs().add(AccountantSiemens);
+        Siemens.getJobs().add(ManagerSiemens);
+        Siemens.getJobs().add(HRSiemens);
+        Siemens.getJobs().add(DesignerSiemens);
+        Siemens.getJobs().add(AnalystSiemens);
+//        return SiemensJobs;
     }
-    static public void setSiemensJobs(){
-        Siemens.setJobs(Controller.createSiemensJobs());
-    }
+//    static public void setSiemensJobs(){
+//        Siemens.setJobs(Controller.createSiemensJobs());
+//    }
 
 
 
 
-    static Admin Habiba = new Admin("Habiba", "Habiba10", "123", 20, "habiba@gmail.com", Google);
+    static Admin Habiba = new Admin("Habiba", "Habiba10", "123", 20, "habiba@gmail.com", Siemens);
     static Job_Seeker Khaled = new Job_Seeker("khaled", "Khaled10", "1234", 20, "kmhtaha@gmail.com");
-    static Job_Poster Omar = new Job_Poster("Omar", "Omar10", "12345", 20, "omarsonny789@gmail.com", Google);
+    static Job_Poster Omar = new Job_Poster("Omar", "Omar10", "12345", 20, "omarsonny789@gmail.com", Siemens);
 
 
 
@@ -130,11 +138,17 @@ public class Controller {
     static ArrayList<String> login(){
         ArrayList<String>inputs=new ArrayList<>();
         while(true) {
-            Controller.setGoogleJobs();
-            Controller.setAmazonJobs();
-            Controller.setIBMJobs();
-            Controller.setMicrosoftJobs();
-            Controller.setSiemensJobs();
+            if(num == 0){
+                Controller.setGoogleJobs();
+                Controller.setAmazonJobs();
+                Controller.setIBMJobs();
+                Controller.setMicrosoftJobs();
+                Controller.createSiemensJobs();
+                num++;
+            } else {
+
+            }
+
             System.out.println("Please specify the type of user:\n"+"1.Admin\n"+"2.Job Poster\n"+"3.Job Seeker\n"+"4.Exit system\n");
             inputs.add(scanner.nextLine());
             if(!(inputs.get(0).equals("1")||inputs.get(0).equals("2")||inputs.get(0).equals("3") ||inputs.get(0).equals("4"))){

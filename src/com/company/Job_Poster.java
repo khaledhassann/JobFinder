@@ -53,15 +53,15 @@ public class Job_Poster extends User{
         String jobTitle = scanner.nextLine();
         System.out.println("Please specify job vacancy (in numbers):");
         int job_vacancy = Integer.valueOf(scanner.nextLine());
-        jobs.add(new Job(jobTitle, job_vacancy , this.company));
+        this.company.addJob(new Job(jobTitle, job_vacancy , this.company));
+//        jobs.add(new Job(jobTitle, job_vacancy , this.company));
         this.options();
     }
     public void view(){
-        int n = 0;
         viewApplications();
         System.out.println("Specify the name of which job applications to view :");
         String name = scanner.nextLine();
-        for(Job job:jobs){
+        for(Job job: this.company.getJobs()){
             if(job.getJobTitle().equals(name)){
                 job.viewApplications();
                 this.accept(job);
@@ -73,10 +73,11 @@ public class Job_Poster extends User{
     }
 
     public void viewApplications(){
-        System.out.println(Job.getAllJobs().size());
-//        for(Job j: Job.getAllJobs()){
-//            j.viewApplications();
-//        }
+        int n =1;
+        for(Job job: this.company.getJobs()){
+            System.out.println(n+" "+job.getJobTitle()+" "+job.getApplications().size());
+            n++;
+        }
 
     }
 
@@ -115,7 +116,7 @@ public class Job_Poster extends User{
                  this.view();
              }
              if (input == 4){
-                 //Job.allJobs.clear();
+                 Job.allJobs.clear();
                  Controller.showOptions(Controller.login());
              }
          }
